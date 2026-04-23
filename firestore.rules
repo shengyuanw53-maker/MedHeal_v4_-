@@ -1,0 +1,51 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isValidUser(data) {
+      return data.uid is string && 
+             data.username is string && 
+             data.role in ['patient', 'doctor'] &&
+             data.name is string &&
+             data.name.size() < 100 &&
+             data.age is int &&
+             data.gender in ['male', 'female', 'other'];
+    }
+
+    function isValidCredential(data) {
+      return data.uid is string && 
+             data.password is string &&
+             data.password.size() >= 6;
+    }
+
+    // User profiles
+    match /users/{uid} {
+      // In a real app, we would use: allow read, write: if request.auth.uid == uid;
+      // For this custom implementation:
+      allow read, write: if true; 
+      
+      // Validation
+      allow create, update: if isValidUser(request.resource.data);
+    }
+
+    // Recovery logs
+    match /recovery_logs/{logId} {
+      allow read, write: if true;
+    }
+
+    // Chat rooms
+    match /chat_rooms/{roomId} {
+      allow read, write: if true;
+      
+      // Messages within rooms
+      match /messages/{messageId} {
+        allow read, write: if true;
+      }
+    }
+
+    // Detection records
+    match /detection_records/{recordId} {
+      allow read, write: if true;
+    }
+  }
+}

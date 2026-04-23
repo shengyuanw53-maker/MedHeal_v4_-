@@ -1,0 +1,12 @@
+{
+  "name": "医愈 (MedHeal) —— 临床内网部署v4.0",
+  "description": "融合 AI 辅助筛查与术后智能管理的闭环平台。集成了 RT-DETR 实时息肉定位、ResNet50 病理分型，以及基于国内大模型的动态康复指导系统，实现从精准筛查到居家康复的全病程智能化管理。",
+  "requestFramePermissions": [
+    "camera"
+  ],
+  "majorCapabilities": [
+    "RT-DETR 息肉病灶精准检测",
+    "ResNet50 肠道病变智能分类",
+    "国内大模型驱动的术后康复数字化管理"
+  ]
+}

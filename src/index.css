@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #2B6CB0;
+  --color-brand-light: #EBF8FF;
+  --color-bg-main: #F0F4F8;
+  --color-text-primary: #1A202C;
+  --color-text-secondary: #4A5568;
+  --color-text-muted: #718096;
+  --color-border-base: #E2E8F0;
+  --color-card-border: #EDF2F7;
+  
+  --font-sans: 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+  
+  --shadow-card: 0 4px 6px -1px rgba(0,0,0,0.1);
+}
+
+@layer base {
+  body {
+    @apply bg-bg-main text-text-primary font-sans antialiased;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-2xl p-5 shadow-card border border-card-border;
+  }
+  
+  .nav-item {
+    @apply flex items-center gap-2.5 px-4 py-3 rounded-lg text-[15px] text-text-secondary cursor-pointer transition-all duration-200 hover:bg-brand-light hover:text-brand-blue;
+  }
+  
+  .nav-item-active {
+    @apply bg-brand-light text-brand-blue font-semibold;
+  }
+  
+  .status-tag {
+    @apply px-2 py-0.5 rounded font-semibold text-xs;
+  }
+  
+  .tag-low {
+    @apply bg-[#C6F6D5] text-[#22543D];
+  }
+  
+  .tag-med {
+    @apply bg-[#FEEBC8] text-[#744210];
+  }
+  
+  .tag-high {
+    @apply bg-[#FED7D7] text-[#822727];
+  }
+
+  .markdown-body {
+    @apply space-y-3;
+  }
+
+  .markdown-body p {
+    @apply mb-3 last:mb-0;
+  }
+
+  .markdown-body ul, .markdown-body ol {
+    @apply pl-5 my-2 space-y-1;
+  }
+
+  .markdown-body ul {
+    @apply list-disc;
+  }
+
+  .markdown-body ol {
+    @apply list-decimal;
+  }
+
+  .markdown-body h1, .markdown-body h2, .markdown-body h3 {
+    @apply font-bold mt-4 mb-2 first:mt-0;
+  }
+
+  .markdown-body p:last-child {
+    @apply mb-0;
+  }
+}
